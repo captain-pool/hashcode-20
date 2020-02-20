@@ -52,6 +52,8 @@ int main() {
         scores[i] = {lib[i].signupTime, {sum, i}};
     }
     sort(scores.begin(), scores.end(), cmp);
+    
+    vector<pair<int, int>> G[L];
 
 	for(int i = 0; i < L; ++i) {
 		int ind = scores[i].ss.ss;
@@ -61,8 +63,10 @@ int main() {
 			if(!unq.count(lib[ind].bookind[j])) {
 				sum += S[lib[i].bookind[j]];
 				unq.insert(lib[ind].bookind[j]);
+				G[ind].push_back({S[lib[ind].bookind[j]], lib[ind].bookind[j]});
 			}
 		}
+		sort(G[ind].rbegin(), G[ind].rend());
 		scores[i].ss.ff = sum;
 	}
 	sort(scores.begin(), scores.end(), cmp1);
@@ -77,7 +81,7 @@ int main() {
     	int n = lib[ind].books;
         cout << ind << ' ' << n << '\n';
         for(int j = 0; j < n; ++j)
-            cout << lib[ind].bookind[j] << ' ';
+            cout << G[ind][j].ss << ' ';
         cout << endl;
     }
 
