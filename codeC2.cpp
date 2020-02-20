@@ -12,11 +12,11 @@ typedef struct library {
 bool cmp(pair<int, pair<int, pair<int, int>>> s1, pair<int, pair<int, pair<int, int>>> s2) {
 	if(s1.ff == s2.ff) {
 		if(s1.ss.ff == s2.ss.ff) {
-			return s1.ss.ss.ff < s2.ss.ss.ff;
+			return s1.ss.ss.ff > s2.ss.ss.ff;
 		}
 		return s1.ss.ff > s2.ss.ff;
 	}
-	return s1.ff > s2.ff;
+	return s1.ff < s2.ff;
 }
 
 int main() {
@@ -45,7 +45,7 @@ int main() {
         int sum = 0;
         for(int j = 0; j < n; ++j)
             sum += S[lib[i].bookind[j]];
-        scores[i] = {sum, {lib[i].booksPerDay, {lib[i].signupTime, i}}};
+        scores[i] = {lib[i].signupTime, {sum, {lib[i].booksPerDay, i}}};
     }
     sort(scores.begin(), scores.end(), cmp);
 
