@@ -44,7 +44,7 @@ int main() {
             sum += S[lib[i].bookind[j]];
         scores[i] = {lib[i].signupTime, {sum, i}};
     }
-    sort(scores.begin(), scores.end(), cmp();
+    sort(scores.begin(), scores.end(), cmp());
 
 
     // output
