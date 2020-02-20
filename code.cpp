@@ -35,7 +35,7 @@ int main() {
         int sum = 0;
         for(int j = 0; j < n; ++j)
             sum += S[lib[i].bookind[j]];
-        scores[i] = {lib[i].booksPerDay, {n, i}};
+        scores[i] = {lib[i].booksPerDay, {lib[i].signupTime, i}};
     }
     sort(scores.begin(), scores.end(), greater<pair<int, pair<int,int>>>());
 
