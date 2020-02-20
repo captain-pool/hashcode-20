@@ -9,6 +9,13 @@ typedef struct library {
     vector<int> bookind;
 }data;
 
+bool cmp(pair<int, pair<int, int>> s1, pair<int, pair<int, int>> s2) {
+	if(s1.ff == s2.ff) {
+		return s1.ss.ff > s2.ss.ff;
+	}
+	return s1.ff < s2.ff;
+}
+
 int main() {
 	// input
     int B,L,D;
@@ -35,9 +42,9 @@ int main() {
         int sum = 0;
         for(int j = 0; j < n; ++j)
             sum += S[lib[i].bookind[j]];
-        scores[i] = {lib[i].booksPerDay, {lib[i].signupTime, i}};
+        scores[i] = {lib[i].signupTime, {sum, i}};
     }
-    sort(scores.begin(), scores.end(), greater<pair<int, pair<int,int>>>());
+    sort(scores.begin(), scores.end(), cmp();
 
 
     // output
@@ -48,8 +55,6 @@ int main() {
     	int ind = scores[i].ss.ss;
     	int n = lib[ind].books;
         cout << scores[i].ss.ss << ' ' << n << '\n';
-        //int ind = scores[i].ss.ss;
-        //int n = lib[ind].books;
         for(int j = 0; j < n; ++j)
             cout << lib[ind].bookind[j] << ' ';
         cout << endl;
