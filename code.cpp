@@ -36,7 +36,7 @@ int main() {
 
 
     // solution code
-    vector<pair<int, pair<int, pair<int, int>>>> scores(L);
+    vector<pair<int, pair<int, int>>> scores(L);
     for(int i = 0; i < L; ++i) {
         int n = lib[i].books;
         int sum = 0;
