@@ -16,6 +16,10 @@ bool cmp(pair<int, pair<int, int>> s1, pair<int, pair<int, int>> s2) {
 	return s1.ff < s2.ff;
 }
 
+bool cmp1(pair<int, pair<int, int>> s1, pair<int, pair<int, int>> s2) {
+	return s1.ss.ff > s2.ss.ff;
+}
+
 int main() {
 	// input
     int B,L,D;
@@ -61,7 +65,7 @@ int main() {
 		}
 		scores[i].ss.ff = sum;
 	}
-	sort(scores.begin(), scores.end(), cmp);
+	sort(scores.begin(), scores.end(), cmp1);
 
 
     // output
