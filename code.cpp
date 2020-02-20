@@ -45,9 +45,11 @@ int main() {
     cout << L << endl;
 
     for(int i = 0; i < L; ++i) {
-        cout << scores[i].ss.ss << ' ' << scores[i].ss.ff << '\n';
-        int ind = scores[i].ss.ss;
-        int n = lib[ind].books;
+    	int ind = scores[i].ss.ss;
+    	int n = lib[ind].books;
+        cout << scores[i].ss.ss << ' ' << n << '\n';
+        //int ind = scores[i].ss.ss;
+        //int n = lib[ind].books;
         for(int j = 0; j < n; ++j)
             cout << lib[ind].bookind[j] << ' ';
         cout << endl;
