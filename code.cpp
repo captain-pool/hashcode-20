@@ -10,18 +10,11 @@ typedef struct library {
 }data;
 
 int main() {
-
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    
+	// input
     int B,L,D;
-
         // B ~ Books
         // L ~ Libraries
         // D ~ Days
-
-
-    //input
     cin >> B >> L >> D;
     int S[B];
     for (int i = 0; i < B; ++i)
@@ -39,6 +32,11 @@ int main() {
     vector<pair<int, pair<int, int>>> scores(L);
     for(int i = 0; i < L; ++i) {
         int n = lib[i].books;
+        /*
+		int sum = 0;
+        for(int j = 0; j < n; ++j)
+            sum += lib[i].bookind[j];
+        */
 		scores[i] = {lib[i].signupTime, {n, i}};
     }
     sort(scores.begin(), scores.end());
