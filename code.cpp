@@ -54,7 +54,7 @@ int main() {
     sort(scores.begin(), scores.end(), cmp);
     
     vector<pair<int, int>> G[L];
-
+	int m = 0;
 	for(int i = 0; i < L; ++i) {
 		int ind = scores[i].ss.ss;
 		int n = lib[ind].books;
@@ -67,6 +67,7 @@ int main() {
 			}
 		}
 		sort(G[ind].rbegin(), G[ind].rend());
+		if(G[ind].size()) ++m;
 		scores[i].ss.ff = sum;
 	}
 	sort(scores.begin(), scores.end(), cmp1);
@@ -74,11 +75,12 @@ int main() {
 
     // output
 
-    cout << L << endl;
+    cout << m << endl;
 
-    for(int i = 0; i < L; ++i) {
+    for(int i = 0; i < m; ++i) {
     	int ind = scores[i].ss.ss;
     	int n = G[ind].size();
+    	if(n == 0) continue;
         cout << ind << ' ' << n << '\n';
         for(int j = 0; j < n; ++j)
             cout << G[ind][j].ss << ' ';
