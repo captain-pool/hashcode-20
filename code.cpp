@@ -9,8 +9,11 @@ typedef struct library {
     vector<int> bookind;
 }data;
 
-bool cmp(pair<int, pair<int, int>> s1, pair<int, pair<int, int>> s2) {
+bool cmp(pair<int, pair<int, pair<int, int>>> s1, pair<int, pair<int, pair<int, int>>> s2) {
 	if(s1.ff == s2.ff) {
+		if(s1.ss.ff == s2.ss.ff) {
+			return s1.ss.ss.ff > s2.ss.ss.ff;
+		}
 		return s1.ss.ff > s2.ss.ff;
 	}
 	return s1.ff < s2.ff;
@@ -36,15 +39,32 @@ int main() {
 
 
     // solution code
-    vector<pair<int, pair<int, int>>> scores(L);
+    set<int> unq;
+    
+    vector<pair<int, pair<int, pair<int, int>>>> scores(L);
+    
     for(int i = 0; i < L; ++i) {
         int n = lib[i].books;
         int sum = 0;
         for(int j = 0; j < n; ++j)
             sum += S[lib[i].bookind[j]];
-        scores[i] = {lib[i].signupTime, {lib[i].booksPerDay, i}};
+        scores[i] = {lib[i].signupTime, {sum, {lib[i].booksPerDay, i}}};
     }
     sort(scores.begin(), scores.end(), cmp);
+
+	for(int i = 0; i < L; ++i) {
+		int ind = scores[i].ss.ss.ss;
+		int n = lib[ind].books;
+		int sum = 0;
+		for(int j = 0; j < n; ++j) {
+			if(!unq.count(lib[ind].bookind[j])) {
+				sum += S[lib[i].bookind[j]];
+				unq.insert(lib[ind].bookind[j]);
+			}
+		}
+		scores[i].ss.ff = sum;
+	}
+	sort(scores.begin(), scores.end(), cmp);
 
 
     // output
@@ -52,9 +72,9 @@ int main() {
     cout << L << endl;
 
     for(int i = 0; i < L; ++i) {
-    	int ind = scores[i].ss.ss;
+    	int ind = scores[i].ss.ss.ss;
     	int n = lib[ind].books;
-        cout << scores[i].ss.ss << ' ' << n << '\n';
+        cout << ind << ' ' << n << '\n';
         for(int j = 0; j < n; ++j)
             cout << lib[ind].bookind[j] << ' ';
         cout << endl;
